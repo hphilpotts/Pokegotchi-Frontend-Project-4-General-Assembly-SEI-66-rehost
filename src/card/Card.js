@@ -2,14 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import Axios from 'axios'
 
-
-let axiosConfig = {
-  headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      "Access-Control-Allow-Origin": "*",
-  }
-};
-
 // MUI imports:
 import { Box } from '@mui/system'
 import { CircularProgress } from '@mui/material'
@@ -30,6 +22,15 @@ export default function Card(props) {
   const [isLoading, setIsLoading] = useState(true)
   const [pG, setPG] = useState({})
   const [user, setUser] = useState(null)
+
+
+  // Update Axios PUT headers to bypass CORS issue:
+  let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+    }
+  };
 
   // * Here useEffect is used to prevent crashes triggered by page refresh or manual url entry to card/ route:
     // If the user performs these actions, the states in parent 'App.js' a cleared and the pG prop passed to this component is 'null'.
