@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import Axios from 'axios'
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 // MUI imports:
 import { Box } from '@mui/system'
