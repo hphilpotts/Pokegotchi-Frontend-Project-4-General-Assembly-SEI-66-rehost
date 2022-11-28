@@ -30,7 +30,12 @@ export default function Card(props) {
     headers: {
         'Content-Type': 'application/json;charset=UTF-8',
         "Access-Control-Allow-Origin": "*",
+    },
+    proxy: {
+      protocol: 'https',
+      host: '127.0.0.1',
     }
+
   };
 
   // * Here useEffect is used to prevent crashes triggered by page refresh or manual url entry to card/ route:
@@ -89,7 +94,7 @@ export default function Card(props) {
   
   const feedFunction = pokegotchi => {
     const value = pG.foodLevel + 1
-    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=foodLevel&value=${value}`, pokegotchi, axiosConfig)
+    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=foodLevel&value=${value}`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
@@ -102,7 +107,7 @@ export default function Card(props) {
   }
   const cleanFunction = pokegotchi => {
     const value = pG.cleanLevel + 1
-    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=cleanLevel&value=${value}`, pokegotchi, axiosConfig)
+    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=cleanLevel&value=${value}`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
@@ -115,7 +120,7 @@ export default function Card(props) {
   }
   const playFunction = pokegotchi => {
     const value = pG.playLevel + 1
-    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=playLevel&value=${value}`, pokegotchi, axiosConfig)
+    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=playLevel&value=${value}`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
@@ -129,7 +134,7 @@ export default function Card(props) {
 
   const healFunction = pokegotchi => {
     // console.log(props.user.user.id)
-    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=hp&value=100`, pokegotchi, axiosConfig)
+    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=hp&value=100`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
