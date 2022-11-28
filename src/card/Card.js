@@ -34,7 +34,8 @@ export default function Card(props) {
     proxy: {
       protocol: 'https',
       host: '127.0.0.1',
-    }
+    },
+    withCredentials: false
 
   };
 
