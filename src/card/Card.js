@@ -26,10 +26,10 @@ export default function Card(props) {
 
   // Update Axios PUT headers to bypass CORS issue:
   let axiosConfig = {
-    // headers: {
-    //     'Content-Type': 'application/json;charset=UTF-8',
-    //     "Access-Control-Allow-Origin": "",
-    // },
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "",
+    },
     proxy: {
       protocol: 'https',
       host: '127.0.0.1',
