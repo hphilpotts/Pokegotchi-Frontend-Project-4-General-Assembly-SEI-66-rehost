@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
+export const API_URL = "https://fair-red-bighorn-sheep-tutu.cyclic.app"
+
 // Axios:
 import Axios from 'axios'
+Axios.defaults.withCredentials = true;
 
 // MUI imports:
 import { Box } from '@mui/system'
