@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import Axios from 'axios'
 import { API_URL } from '../App'
-Axios.defaults.withCredentails = true;
 
 // MUI imports:
 import { Box } from '@mui/system'
@@ -90,7 +89,7 @@ export default function Card(props) {
   
   const feedFunction = pokegotchi => {
     const value = pG.foodLevel + 1
-    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=foodLevel&value=${value}`, pokegotchi, axiosConfig)
+    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=foodLevel&value=${value}`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
@@ -103,7 +102,7 @@ export default function Card(props) {
   }
   const cleanFunction = pokegotchi => {
     const value = pG.cleanLevel + 1
-    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=cleanLevel&value=${value}`, pokegotchi, axiosConfig)
+    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=cleanLevel&value=${value}`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
@@ -116,7 +115,7 @@ export default function Card(props) {
   }
   const playFunction = pokegotchi => {
     const value = pG.playLevel + 1
-    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=playLevel&value=${value}`, pokegotchi, axiosConfig)
+    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=playLevel&value=${value}`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
@@ -130,7 +129,7 @@ export default function Card(props) {
 
   const healFunction = pokegotchi => {
     // console.log(props.user.user.id)
-    Axios.put(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=hp&value=100`, pokegotchi, axiosConfig)
+    Axios.post(`${API_URL}/pokegotchi/update?id=${props.user.user.id}&field=hp&value=100`, pokegotchi, axiosConfig)
     .then(res => {
       console.log('PokeGotchi updated!')
       console.log(res)
