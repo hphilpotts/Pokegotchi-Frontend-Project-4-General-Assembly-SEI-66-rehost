@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Pokégotchi : SEI Project 4 - Redeployment     
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Background:      
 
-## Available Scripts
+See original repository and README for this Project [here](https://github.com/hphilpotts/Pokegotchi-Frontend-Project-4-General-Assembly-SEI-66).              
 
-In the project directory, you can run:
+An earlier version was hosted on _Heroku_, however with the closure of their free tier on 28/11/22 I rehosted both frontend and backend elsewhere. In order to make redeployemnt easier, I cloned a 'pre-Heroku' commit from Ashish's original GitHub Enterprise and was able to successfully host this React frontend [on Vercel](https://vercel.com/hphilpotts/pokegotchi-frontend-project-4-general-assembly-sei-66-rehost/BjyUi5YnEWNcredrEx4DLSsFNZyS) - I found the ability to link directly to GitHub super easy, and found navigating settings / environment variables etc. quite straightforward.      
 
-### `npm start`
+The backend ([repository here](https://github.com/hphilpotts/Pokegotchi-Backend-Project-4-General-Assembly-SEI-66)) is hosted [on Cyclic](https://app.cyclic.sh/#/app/hphilpotts-pokegotchi-backend-project-4-general-assembly-sei-66/overview).        
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Rehosting challenges:        
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+24/11/22 - 28/11/22     
 
-### `npm test`
+Whilst hosting the app on Vercel was easy, I found connecting frontend and backend quite problematic for a number of reasons, particularly:     
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Not knowing that `proxy:` in `package.json` only works in _development_, not in _production_. I can comfortably say that I am well aware of this now after a long time wondering why only full urls in `Axios` calls worked...      
+- Even once this was resolved, CORS errors we consistently coming up - getting my head around the best way of resolving this took a while, there are a lot of articles and threads out there with a lot of different approaches and ideas on the matter. A positive is that I have a much better understanding of **why** we get CORS errors as well as how to resolve them!             
+- Last - _but certainly not least_ - it turns out that `Axios.put` requests that fail validation throw a CORS error. Where Pokégotchi Status values had dropped below negative (they shouldn't do that, see 'Future Improvements' below), requests to update these were failing validation, resulting in a CORS error coming up on the frontend console. This was mighty confusing until I worked out what was going on - I'd got everything working except for the PUT requests in `Card.js` and was trying everything under the sun to bypass the CORS errors!                    
 
-### `npm run build`
+_Key in all of this was_ **Postman** _which might just be my favourite app right now! Without it I would have really, really struggled!_          
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Future Improvements:         
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Now that I've got both frontend and backend apps rehosted (_greeaat timing hosting eveything on Heroku a month before they binned their free service_), and indeed talking to each other, there are few changes I'm looking to implement across both apps:       
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- _Restrict backend API use only the frontend app only_. At present, the API is publicly accessible - this was to help eliminate certain CORS issues when trying to get the apps to link up.        
+- _Implement 'Select a Pokégotchi' upon signup_. We ran out of time to implement this: any new user will not be able to choose a Pokégotchi at present!     
+- _Prevent Pokégotchi Status values from decrementing below 0_. I wrongly assumed that the Pokégotchi Model validation parameters would prevent the `Decrement All Pokégotchi Levels API` from lowering these Status values below 0. Instead, values continued (and indeed continue) to go into negatives, and any attempt to change these in the frontend fail (see Rehosting Challenges above). This will require work in the backend only to fix!        
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
